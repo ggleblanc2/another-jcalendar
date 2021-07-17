@@ -45,6 +45,8 @@ Here's the JCalendar with alternate colors and a larger font for us older folks.
 
 ## Explanation
 
+If you’re not familiar with Java Swing, Oracle has an excellent tutorial to get you started, [Creating a GUI With JFC/Swing](https://docs.oracle.com/javase/tutorial/uiswing/index.html). Skip the Netbeans section.
+
 The JCalendar is a JDialog with a main JPanel.  The main JPanel uses a GridBagLayout to place two subordinate JPanels, the title JPanel and the calendar JPanel.
 
 The title JPanel uses a GridBagLayout to hold the four JButtons and a JLabel.  This is so I can place the JButtons on the left and the right, while allowing the maximum amount of space for the month and year JLabel.
