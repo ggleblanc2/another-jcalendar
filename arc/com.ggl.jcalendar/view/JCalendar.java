@@ -18,6 +18,87 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
+/**
+ * <p>
+ * <code>JCalendar</code> is a Swing <code>JDialog</code> that displays the
+ * month as a calendar for the calendar date. The day of the calendar date is
+ * highlighted. This dialog is usually created in the
+ * <code>ActionListener</code> of a <code>JButton</code>
+ * </p>
+ * 
+ * <p>
+ * The user selected date is retrieved as a <code>LocalDate</code>. If the user
+ * cancels the <code>JCalendar</code>, the selected date is retrieved as
+ * <code>null</code>.
+ * </p>
+ * 
+ * <p>
+ * The <code>JCalendar</code> has several optional parameters. You may:
+ * <ul>
+ * <li>Change the panel background color.</li>
+ * <li>Change the panel foreground color.</li>
+ * <li>Change the calendar day highlight color.</li>
+ * <li>Change the font.</li>
+ * <li>Change the month names, to accommodate other languages.</li>
+ * <li>Change the start day of the week. The default is the
+ * <code> DayOfWeek SUNDAY</code>.</li>
+ * <li>Change the three letter day of the week names, to accommodate other
+ * languages and other start days of the week.</li>
+ * <li>Exclude week days from being selected.</li>
+ * <li>Set the earliest valid date for selection.</li>
+ * <li>Set the latest valid date for selection.</li>
+ * </ul>
+ * </p>
+ * 
+ * <p>
+ * Here's the simplest example of creating a <code>JCalendar</code>.
+ * 
+ * <pre>
+ * <code>
+ *    JCalendar calendar = new JCalendar(frame, LocalDate.now(), 
+ *            "Transaction Date");
+ *    calendar.start();
+ *    LocalDate selectedDate = calendar.getSelectedDate();
+ *    if (selectedDate != null) {
+ *        ...
+ *    }
+ * </code>
+ * </pre>
+ * 
+ * Optional parameter method calls would go between the <code>JCalendar</code>
+ * instantiation and the <code>start</code> method call.
+ * </p>
+ * 
+ * <p>
+ * Here's one example of a "dark" <code>JCalendar</code>:
+ * 
+ * <pre>
+ * <code>
+ *    JCalendar calendar = new JCalendar(frame, LocalDate.now(), 
+ *            "Transaction Date");
+ *    calendar.setPanelBackGroundColor(Color.BLACK);
+ *    calendar.setPanelForegroundColor(Color.WHITE);
+ *    calendar.setDayHighlightColor(Color.RED);
+ *    calendar.start();
+ *    LocalDate selectedDate = calendar.getSelectedDate();
+ *    if (selectedDate != null) {
+ *        ...
+ *    }
+ * </code>
+ * </pre>
+ * </p>
+ * 
+ * @author Gilbert G. Le Blanc - Created 16 July 2021
+ * 
+ * @see java.awt.Color
+ * @see java.awt.event.ActionListener
+ * @see java.time.DayOfWeek
+ * @see java.time.LocalDate
+ * @see javax.swing.JButton
+ * @see javax.swing.JDialog
+ * @see javax.swing.JFrame
+ * 
+ */
 public class JCalendar extends JDialog {
 
 	private static final long serialVersionUID = 1L;
@@ -47,74 +128,7 @@ public class JCalendar extends JDialog {
 	private String[] monthNames;
 
 	/**
-	 * <p>
-	 * <code>JCalendar</code> is a Swing <code>JDialog</code> that displays the
-	 * month as a calendar for the calendar date. The day of the calendar date is
-	 * highlighted. This dialog is usually created in the
-	 * <code>ActionListener</code> of a <code>JButton</code>
-	 * </p>
-	 * 
-	 * <p>
-	 * The user selected date is retrieved as a <code>LocalDate</code>. If the user
-	 * cancels the <code>JCalendar</code>, the selected date is retrieved as
-	 * <code>null</code>.
-	 * </p>
-	 * 
-	 * <p>
-	 * The <code>JCalendar</code> has several optional parameters. You may:
-	 * <ul>
-	 * <li>Change the panel background color.</li>
-	 * <li>Change the panel foreground color.</li>
-	 * <li>Change the calendar day highlight color.</li>
-	 * <li>Change the font.</li>
-	 * <li>Change the month names, to accommodate other languages.</li>
-	 * <li>Change the start day of the week. The default is the
-	 * <code> DayOfWeek SUNDAY</code>.</li>
-	 * <li>Change the three letter day of the week names, to accommodate other
-	 * languages and other start days of the week.</li>
-	 * <li>Exclude week days from being selected.</li>
-	 * <li>Set the earliest valid date for selection.</li>
-	 * <li>Set the latest valid date for selection.</li>
-	 * </ul>
-	 * </p>
-	 * 
-	 * <p>
-	 * Here's the simplest example of creating a <code>JCalendar</code>.
-	 * 
-	 * <pre>
-	 * <code>
-	 *    JCalendar calendar = new JCalendar(frame, LocalDate.now(), 
-	 *            "Transaction Date");
-	 *    calendar.start();
-	 *    LocalDate selectedDate = calendar.getSelectedDate();
-	 *    if (selectedDate != null) {
-	 *        ...
-	 *    }
-	 * </code>
-	 * </pre>
-	 * 
-	 * Optional parameter method calls would go between the <code>JCalendar</code>
-	 * instantiation and the <code>start</code> method call.
-	 * </p>
-	 * 
-	 * <p>
-	 * Here's one example of a "dark" <code>JCalendar</code>:
-	 * 
-	 * <pre>
-	 * <code>
-	 *    JCalendar calendar = new JCalendar(frame, LocalDate.now(), 
-	 *            "Transaction Date");
-	 *    calendar.setPanelBackGroundColor(Color.BLACK);
-	 *    calendar.setPanelForegroundColor(Color.WHITE);
-	 *    calendar.setDayHighlightColor(Color.RED);
-	 *    calendar.start();
-	 *    LocalDate selectedDate = calendar.getSelectedDate();
-	 *    if (selectedDate != null) {
-	 *        ...
-	 *    }
-	 * </code>
-	 * </pre>
-	 * </p>
+	 * This constructor creates the default <code>JCalendar</code>.
 	 * 
 	 * @param frame        - The <code>JFrame</code> for which this
 	 *                     <code>JCalendar JDialog</code> is meant.
@@ -122,18 +136,6 @@ public class JCalendar extends JDialog {
 	 *                     displayed. The day of the month is highlighted.
 	 * @param title        - The title of the <code>JDialog</code> which describes
 	 *                     what type of date the user selects.
-	 * 
-	 * 
-	 * @author Gilbert G. Le Blanc - Created 16 July 2021
-	 * 
-	 * @see java.awt.Color
-	 * @see java.awt.event.ActionListener
-	 * @see java.time.DayOfWeek
-	 * @see java.time.LocalDate
-	 * @see javax.swing.JButton
-	 * @see javax.swing.JDialog
-	 * @see javax.swing.JFrame
-	 * 
 	 */
 	public JCalendar(JFrame frame, LocalDate calendarDate, String title) {
 		super(frame, title, true);
@@ -156,6 +158,10 @@ public class JCalendar extends JDialog {
 		this.latestDate = null;
 	}
 	
+	/**
+	 * This method creates the <code>JCalendar</code> and displays the
+	 * <code>JDialog</code>.
+	 */
 	public void start() {
 		add(createMainPanel(calendarDate), BorderLayout.CENTER);
 		
